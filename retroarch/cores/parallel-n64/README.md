@@ -1,0 +1,30 @@
+The trick to compile this core is to force odroid that and armv7h ARCH... odroid use a Mali GPU without Vulkan like Pandora!
+
+After made the code with this patch just add this options to retroarch-core-options.cfg
+
+
+parallel-n64-cpucore = "dynamic_recompiler"
+parallel-n64-audio-buffer-size = "2048"
+parallel-n64-astick-deadzone = "15"
+parallel-n64-pak1 = "none"
+parallel-n64-pak2 = "none"
+parallel-n64-pak3 = "none"
+parallel-n64-pak4 = "none"
+parallel-n64-disable_expmem = "disabled"
+parallel-n64-gfxplugin-accuracy = "low"
+parallel-n64-parallel-rdp-synchronous = "disabled"
+parallel-n64-gfxplugin = "gln64"
+parallel-n64-rspplugin = "hle"
+parallel-n64-screensize = "320x240"
+parallel-n64-aspectratiohint = "normal"
+parallel-n64-filtering = "nearest"
+parallel-n64-dithering = "disabled"
+parallel-n64-polyoffset-factor = "-3.0"
+parallel-n64-polyoffset-units = "-3.0"
+parallel-n64-angrylion-vioverlay = "disabled"
+parallel-n64-virefresh = "auto"
+parallel-n64-bufferswap = "disabled"
+parallel-n64-framerate = "original"
+parallel-n64-alt-map = "disabled"
+parallel-n64-boot-device = "Default"
+parallel-n64-64dd-hardware = "disabled"

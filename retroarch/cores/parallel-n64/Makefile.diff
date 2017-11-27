@@ -1,0 +1,22 @@
+--- orig/Makefile       2017-10-26 14:46:32.000000000 +0200
++++ Makefile    2017-11-06 08:52:47.000000000 +0100
+@@ -21,6 +21,11 @@
+ CPUFLAGS  :=
+ GLFLAGS   :=
+
++CC = arm-linux-gnueabihf-gcc
++CXX = arm-linux-gnueabihf-g++
++platform="odroid"
++
++
+ UNAME=$(shell uname -a)
+
+ SPACE :=
+@@ -75,6 +80,7 @@
+
+ # Cross compile ?
+
++ARCH="armv7h"
+ ifeq (,$(ARCH))
+    ARCH = $(shell uname -m)
+ endif
