@@ -1,0 +1,79 @@
+--- orig/Makefile.libretro      2017-11-30 13:43:28.000000000 +0000
++++ Makefile.libretro   2017-12-01 00:53:02.000000000 +0000
+@@ -1,5 +1,6 @@
+ # Makefile for PicoDrive (libretro)
+
++
+ ifeq ($(platform),)
+        platform = unix
+        ifeq ($(shell uname -a),)
+@@ -17,11 +18,14 @@
+        endif
+ endif
+
++platform = armv7h
++
+ CC ?= gcc
+ CXX ?= g++
+ AS ?= as
+ CC_AS ?= $(CC)
+ CFLAGS ?=
++use_cyclone = 1
+
+ STATIC_LINKING:= 0
+ TARGET_NAME := picodrive
+@@ -31,12 +35,12 @@
+        CFLAGS += -DGIT_VERSION=\"$(GIT_VERSION)\"
+ endif
+
+-asm_memory = 0
+-asm_render = 0
+-asm_ym2612 = 0
+-asm_misc = 0
+-asm_cdmemory = 0
+-asm_mix = 0
++asm_memory = 1
++asm_render = 1
++asm_ym2612 = 1
++asm_misc = 1
++asm_cdmemory = 1
++asm_mix = 1
+
+ fpic :=
+
+@@ -366,35 +370,13 @@
+        TARGET := $(TARGET_NAME)_libretro.so
+        SHARED := -shared -Wl,--no-undefined,-Bsymbolic
+    fpic := -fPIC
+-       ifneq (,$(findstring cortexa5,$(platform)))
+-               CFLAGS += -marm -mcpu=cortex-a5
+-               ASFLAGS += -mcpu=cortex-a5
+-       else ifneq (,$(findstring cortexa8,$(platform)))
+-               CFLAGS += -marm -mcpu=cortex-a8
+-               ASFLAGS += -mcpu=cortex-a8
+-       else ifneq (,$(findstring cortexa9,$(platform)))
+                CFLAGS += -marm -mcpu=cortex-a9
+                ASFLAGS += -mcpu=cortex-a9
+-       else ifneq (,$(findstring cortexa15a7,$(platform)))
+-               CFLAGS += -marm -mcpu=cortex-a15.cortex-a7
+-               ASFLAGS += -mcpu=cortex-a15.cortex-a7
+-       else
+-               CFLAGS += -marm
+-       endif
+-       ifneq (,$(findstring neon,$(platform)))
+                CFLAGS += -mfpu=neon
+                ASFLAGS += -mfpu=neon
+-       endif
+-       ifneq (,$(findstring softfloat,$(platform)))
+-               CFLAGS += -mfloat-abi=softfp
+-               ASFLAGS += -mfloat-abi=softfp
+-       else ifneq (,$(findstring hardfloat,$(platform)))
+                CFLAGS += -mfloat-abi=hard
+                ASFLAGS += -mfloat-abi=hard
+-       endif
+-       ifneq (,$(findstring armasm,$(platform)))
+                ARM_ASM = 1
+-       endif
+        ARCH = arm
+
+ # Emscripten
