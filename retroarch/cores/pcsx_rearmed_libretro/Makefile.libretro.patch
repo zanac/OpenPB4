@@ -1,0 +1,51 @@
+--- Makefile.libretro	2017-12-01 13:16:43.000000000 +0000
++++ orig/Makefile.libretro	2017-12-01 13:20:19.000000000 +0000
+@@ -22,6 +22,7 @@
+ TARGET_NAME := pcsx_rearmed
+ 
+ MMAP_WIN32=0
++platform = armv
+ 
+ # Unix
+ ifeq ($(platform), unix)
+@@ -136,29 +137,19 @@
+ 	TARGET := $(TARGET_NAME)_libretro.so
+ 	SHARED := -shared -Wl,--no-undefined
+ 	DRC_CACHE_BASE = 0
+-	ifneq (,$(findstring cortexa8,$(platform)))
+-		CFLAGS += -marm -mcpu=cortex-a8
+-		ASFLAGS += -mcpu=cortex-a8
+-	else ifneq (,$(findstring cortexa9,$(platform)))
+-		CFLAGS += -marm -mcpu=cortex-a9
+-		ASFLAGS += -mcpu=cortex-a9
+-	endif
+-	CFLAGS += -marm
+-	ifneq (,$(findstring neon,$(platform)))
+-		CFLAGS += -mfpu=neon
+-		ASFLAGS += -mfpu=neon
+-		HAVE_NEON = 1
+-		BUILTIN_GPU = neon
+-	endif
+-	ifneq (,$(findstring softfloat,$(platform)))
+-		CFLAGS += -mfloat-abi=softfp
+-		ASFLAGS += -mfloat-abi=softfp
+-	else ifneq (,$(findstring hardfloat,$(platform)))
+-		CFLAGS += -mfloat-abi=hard
+-		ASFLAGS += -mfloat-abi=hard
+-	endif
++	CFLAGS += -marm -mcpu=cortex-a9
++	ASFLAGS += -mcpu=cortex-a9
++	CFLAGS += -mfpu=neon
++	ASFLAGS += -mfpu=neon
++	HAVE_NEON = 1
++	BUILTIN_GPU = neon
++	CFLAGS += -mfloat-abi=hard
++	ASFLAGS += -mfloat-abi=hard
+ 	ARCH = arm
+ 	USE_DYNAREC = 1
++	HAVE_NEON = 1
++	BUILTIN_GPU = neon
++	USE_DYNAREC = 1
+ 
+ # Windows
+ else
