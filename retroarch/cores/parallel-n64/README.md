@@ -1,7 +1,5 @@
-The trick to compile this core is to force odroid that and armv7h ARCH... odroid use a Mali GPU without Vulkan like Pandora!
-
 After made the code with this patch just add this options to retroarch-core-options.cfg
-
+try to change yourself for even better framerate!
 
 parallel-n64-cpucore = "dynamic_recompiler"
 parallel-n64-audio-buffer-size = "2048"
