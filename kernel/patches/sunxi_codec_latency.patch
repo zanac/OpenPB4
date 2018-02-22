@@ -1,5 +1,5 @@
---- linux-sunxi-sunxi-3.4-orig/sound/soc/sunxi/sunxi-codec.c    2018-02-21 15:05:53.640000448 +0000
-+++ linux-sunxi-sunxi-3.4/sound/soc/sunxi/sunxi-codec.c 2018-02-22 08:10:33.210001581 +0000
+--- kernel.org/sound/soc/sunxi/sunxi-codec.c    2018-02-21 15:05:53.640000448 +0000
++++ kernel.new/sound/soc/sunxi/sunxi-codec.c 2018-02-22 08:10:33.210001581 +0000
 @@ -110,9 +110,9 @@
         .channels_min           = 1,
         .channels_max           = 2,
